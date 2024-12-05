@@ -30,4 +30,19 @@ interface CategoryDao {
     // 카테고리 삭제
     @Delete
     fun deleteCategoryDataByCategoryIdx(categoryVO: CategoryVO)
+
+//    // 카테고리 이름으로 카테고리 정보를 가져오는 메서드
+//    @Query("""
+//        select * from CategoryTable
+//        where categoryName = :categoryName
+//        order by categoryIdx desc
+//    """)
+//    fun selectCategoryDataAllByCategoryName(categoryName:String):List<CategoryVO>
+
+    // 카테고리 이름의 요소를 입력하면 해당 요소를 가지고 있는 모든 정보를 가져오는 메서드
+    @Query("""
+    SELECT * FROM CategoryTable 
+    WHERE categoryName LIKE :keyword
+    """)
+    fun selectCategoryDataAllByKeyword(keyword: String): List<CategoryVO>
 }

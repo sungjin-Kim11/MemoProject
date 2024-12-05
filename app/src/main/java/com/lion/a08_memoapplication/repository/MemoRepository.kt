@@ -173,5 +173,59 @@ class MemoRepository {
             val memoDataBase = MemoDataBase.getInstance(context)
             memoDataBase?.memoDao()?.deleteMemoDataByCategoryIdx(deleteCategoryIdx)
         }
+
+//        // 메모 이름으로 검색하여 메모 데이터 전체를 가져오는 메서드
+//        fun selectMemoDataAllByMemoTitle(context: Context, memoTitle:String) : MutableList<MemoModel>{
+//            // 데이터를 가져온다.
+//            val memoDatabase = MemoDataBase.getInstance(context)
+//            val memoList = memoDatabase?.memoDao()?.selectMemoDataAllByMemoTitle(memoTitle)
+//
+//            // 메모 데이터를 담을 리스트
+//            val tempList = mutableListOf<MemoModel>()
+//
+//            // 메모의 수 만큼 반복한다.
+//            memoList?.forEach {
+//                val memoModel = MemoModel(
+//                    memoIdx = it.memoIdx,
+//                    memoTitle = it.memoTitle,
+//                    memoText =  it.memoText,
+//                    memoIsSecret = it.memoIsSecret,
+//                    memoIsFavorite = it.memoIsFavorite,
+//                    memoPassword = it.memoPassword,
+//                    memoCategoryIdx = it.memoCategoryIdx
+//                )
+//                // 리스트에 담는다.
+//                tempList.add(memoModel)
+//            }
+//            return tempList
+//        }
+
+        // 키워드로 검색하여 메모 데이터를 가져오는 메서드
+        fun selectMemoDataAllByKeyword(context: Context, keyword: String): MutableList<MemoModel> {
+            val memoDatabase = MemoDataBase.getInstance(context)
+
+            // 키워드에 맞는 데이터를 가져온다.
+            val queryKeyword = "%$keyword%"
+            val memoList = memoDatabase?.memoDao()?.selectMemoDataAllByKeyword(queryKeyword)
+
+            // 메모 데이터를 담을 리스트 생성
+            val tempList = mutableListOf<MemoModel>()
+
+            // 가져온 메모 데이터를 반복하여 변환
+            memoList?.forEach {
+                val memoModel = MemoModel(
+                    memoIdx = it.memoIdx,
+                    memoTitle = it.memoTitle,
+                    memoText = it.memoText,
+                    memoIsSecret = it.memoIsSecret,
+                    memoIsFavorite = it.memoIsFavorite,
+                    memoPassword = it.memoPassword,
+                    memoCategoryIdx = it.memoCategoryIdx
+                )
+                // 변환된 데이터를 리스트에 추가
+                tempList.add(memoModel)
+            }
+            return tempList
+        }
     }
 }

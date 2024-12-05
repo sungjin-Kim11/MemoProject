@@ -2,6 +2,8 @@ package com.lion.a08_memoapplication.fragment
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,6 +49,8 @@ class CategoryManagementFragment : Fragment() {
         settingRecyclerView()
         // 버튼을 설정하는 메서드를 호출한다.
         settingButton()
+        // 입력 요소 설정
+        settingTextField()
         // 데이터를 가져와 RecyclerView를 갱신하는 메서드를 호출한다.
         refreshRecyclerView()
 
@@ -62,6 +66,56 @@ class CategoryManagementFragment : Fragment() {
             toolbarCategoryManagement.setNavigationOnClickListener {
                 mainActivity.activityMainBinding.drawerLayoutMain.open()
             }
+
+            // 메뉴
+            toolbarCategoryManagement.inflateMenu(R.menu.toolbar_show_memo_all)
+            toolbarCategoryManagement.setOnMenuItemClickListener {
+                when(it.itemId){
+                    // 검색
+                    R.id.search_memo -> {
+                        if(fragmentCategoryManagementBinding.textFieldSearchCategoryName.visibility == View.VISIBLE){
+                            fragmentCategoryManagementBinding.textFieldSearchCategoryName.visibility = View.GONE
+                        } else {
+                            fragmentCategoryManagementBinding.textFieldSearchCategoryName.visibility = View.VISIBLE
+                        }
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    // 입력 요소 설정
+    fun settingTextField() {
+        fragmentCategoryManagementBinding.apply {
+
+            // EditText에 TextWatcher 추가
+            textFieldSearchCategoryName.editText?.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val keyword = s?.toString() ?: ""
+
+                        val work1 = async(Dispatchers.IO) {
+                            if (keyword.isBlank()) {
+                                // 입력값이 없으면 전체 데이터를 가져옴
+                                CategoryRepository.selectCategoryAll(mainActivity)
+                            } else {
+                                // 입력값이 있으면 해당 키워드를 포함하는 데이터를 가져옴
+                                CategoryRepository.selectCategoryDataAllByKeyword(mainActivity, keyword)
+                            }
+                        }
+                        // 결과를 갱신
+                        categoryList = work1.await()
+                        recyclerViewCategoryManagement.adapter?.notifyDataSetChanged()
+                    }
+                }
+            })
         }
     }
 

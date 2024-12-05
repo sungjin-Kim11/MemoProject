@@ -81,4 +81,19 @@ interface MemoDao {
         where memoCategoryIdx = :deleteCategoryIdx
     """)
     fun deleteMemoDataByCategoryIdx(deleteCategoryIdx:Int)
+
+//    // 메모 이름으로 메모 정보를 가져오는 메서드
+//    @Query("""
+//        select * from MemoTable
+//        where memoTitle = :memoTitle
+//        order by memoIDx desc
+//    """)
+//    fun selectMemoDataAllByMemoTitle(memoTitle:String):List<MemoVO>
+
+    // 메모 이름의 요소를 입력하면 해당 요소를 가지고 있는 모든 정보를 가져오는 메서드
+    @Query("""
+    SELECT * FROM MemoTable 
+    WHERE memoTitle LIKE :keyword
+    """)
+    fun selectMemoDataAllByKeyword(keyword: String): List<MemoVO>
 }
