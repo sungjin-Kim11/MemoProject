@@ -1,0 +1,62 @@
+[res/menu/navigation_menu.xml
+
+Menu
+
+    MenuItem
+        - id : navigation_menu_item_all
+        - title : 모든 메모
+        - icon : 아무거나
+        - showAsAction : ifRoom
+        - checkable : true
+
+    MenuItem
+        - id : navigation_menu_item_favorite
+        - title : 즐겨 찾기
+        - icon : 아무거나
+        - showAsAction : ifRoom
+        - checkable : true
+
+    MenuItem
+        - id : navigation_menu_item_secret
+        - title : 비밀 메모
+        - icon : 아무거나
+        - showAsAction : ifRoom
+        - checkable : true
+
+    MenuItem
+        - id : navigation_menu_item_management_category
+        - title : 카테고리 관리
+        - icon : 아무거나
+        - showAsActon : ifRoom
+        - checkable : true
+
+    MenuItem
+        - title : 메모 카테고리
+        - id : navigation_menu_item_memo_category
+        - icon : 아무거나
+        - showAsAction : ifRoom
+
+        Menu
+
+            MenuItem
+                - title : 기본 메모
+                - id : navigation_menu_item_category_basic
+                - icon : 아무거나
+                - showAsAction : ifRoom
+                - checkable : true
+
+[res/menu/toolbar_read_memo_menu.xml]
+
+Menu
+
+    MenuItem
+        - id : toolbar_read_memo_menu_item_modify
+        - title : 메모 수정
+        - icon : 아무거나
+        - showAsAction : ifRoom
+
+    MenuItem
+        - id : toolbar_read_memo_menu_item_delete
+        - title : 메모 삭제
+        - icon : 아무거나
+        - showAsAction : ifRoom

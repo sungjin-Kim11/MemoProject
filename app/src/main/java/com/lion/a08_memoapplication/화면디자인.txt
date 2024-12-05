@@ -1,0 +1,351 @@
+[res/layout/navigation_header_layout.xml]
+
+LinearLayout
+    - orientation : vertical
+    - transitionGroup : true
+
+    TextView
+        - id : textViewNavigationHeaderTitle1
+
+    TextView
+        - id : textViewNavigationHeaderTitle2
+        - layout_marinTop : 10dp
+
+[res/layout/activity_main.xml]
+
+ConstraintLayout
+    - transitionGroup : true
+
+    DrawerLayout
+        -id : drawerLayoutMain
+        - 위 : 부모의 위
+        - 아래 : 부모의 아래
+        - 좌측 : 부모의 좌측
+        - 우측 : 부모의 우측
+
+        CoordinatorLayout
+
+            LinearLayout
+                - orientation : vertical
+
+                FragmentContainerView
+                    - id : fragmentContainerView
+
+        NavigationView
+            - id : navigationViewMain
+            - layout_gravity : start
+
+[res/layout/row_text1.xml]
+
+LinearLayout
+    - orientation : vertical
+    - transitionGroup : true
+    - padding : 10dp
+    - layout_height : wrap_content
+
+    TextView
+        - id : textViewRow
+        - textAppearance : Large
+
+[res/layout/fragment_show_memo_all.xml]
+
+ConstraintLayout
+    - transitionGroup : true
+
+    MaterialToolbar
+        - id : toolbarShowMemoAll
+        - background : transparent
+        - 상단 : 부모의 상단
+        - 좌측 : 부모의 좌측
+        - 우측 : 부모의 우측
+        - layout_width : 0dp
+
+    RecyclerView
+        - id : recyclerViewShowMemoAll
+        - 상단 : toolbarShowMemoAll 의 하단
+        - 좌측 : 부모의 좌측
+        - 우측 : 부모의 우측
+        - 하단 : 부모의 하단
+        - layout_width : 0dp
+        - layout_height : 0dp
+
+    FAB
+        - id : fabShowMemoAllAdd
+        - icon : add_24px
+        - 우측 : 부모의 우측
+        - 하단 : 부모의 하단
+        - layout_marginEnd : 10dp
+        - layout_marginBottom : 10dp
+
+[res/layout/fragment_add_memo.xml]
+
+LinearLayout
+    - orientation : vertical
+    - transitionGroup : true
+
+    MaterialToolbar
+        - id : toolbarAddMemo
+        - background : transparent
+
+    ScrollView
+
+        LinearLayout
+            - orientation : vertical
+            - padding : 10dp
+
+            TextInputLayout
+                - id : textFieldAddMemoCategory
+                - style : Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu
+
+                AutoCompleteTextView
+                    - inputType : none
+
+            TextInputLayout
+                - id : textFieldAddMemoTitle
+                - endIconMode : clear_text
+                - hint : 메모 제목
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleLine : true
+
+            TextInputLayout
+                - id : textFieldAddMemoText
+                - endIconMode : clear_text
+                - hint : 메모 내용
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+
+            CheckBox
+                - id : checkBoxAddMemoSecret
+                - text : 비밀메모
+                - layout_marginTop : 10dp
+
+            TextInputLayout
+                - id : textFieldAddMemoPassword
+                - endIconMode : password_toggle
+                - hint : 비밀번호
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleline : true
+                    - inputType : text|text_password
+
+[res/layout/fragment_read_memo.xml]
+
+LinearLayout
+    - orientation : vertical
+    - transitionGroup : true
+
+    MaterialToolbar
+        - id : toolbarReadMemo
+        - background : transparent
+
+    ScrollView
+
+        LinearLayout
+            - orientation : vertical
+            - padding : 10dp
+
+            TextInputLayout
+                - id : textFieldReadMemoCategory
+                - hint : 카테고리
+                - layout_height : wrap_content
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleLine : true
+                    - text : " "
+                    - enabled : false
+                    - textColor : #000000
+
+
+            TextInputLayout
+                - id : textFieldReadMemoTitle
+                - hint : 메모 제목
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleLine : true
+                    - text : " "
+                    - enabled : false
+                    - textColor : #000000
+
+            TextInputLayout
+                - id : textFieldReadMemoText
+                - hint : 메모 내용
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - text : " "
+                    - enabled : false
+                    - textColor : #000000
+
+[res/layout/fragment_modify_memo.xml]
+
+LinearLayout
+    - orientation : vertical
+    - transitionGroup : true
+
+    MaterialToolbar
+        - id : toolbarModifyMemo
+        - background : transparent
+
+    ScrollView
+
+        LinearLayout
+            - orientation : vertical
+            - padding : 10dp
+
+            TextInputLayout
+                - id : textFieldModifyMemoCategory
+                - style : Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu
+
+                AutoCompleteTextView
+                    - inputType : none
+
+            TextInputLayout
+                - id : textFieldModifyMemoTitle
+                - endIconMode : clear_text
+                - hint : 메모 제목
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleLine : true
+                    - text : " "
+
+            TextInputLayout
+                - id : textFieldModifyMemoText
+                - endIconMode : clear_text
+                - hint : 메모 내용
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - text : " "
+
+            CheckBox
+                - id : checkBoxModifyMemoSecret
+                - text : 비밀메모
+                - layout_marginTop : 10dp
+
+            TextInputLayout
+                - id : textFieldModifyMemoPassword
+                - endIconMode : password_toggle
+                - hint : 비밀번호
+                - layout_height : wrap_content
+                - layout_marginTop : 10dp
+
+                TextInputEditText
+                    - hint : 삭제
+                    - singleline : true
+                    - inputType : text|text_password
+                    - text : " "
+
+[res/layout/fragment_category_management.xml]
+
+ConstraintLayout
+    - transitionGroup : true
+
+    MaterialToolbar
+        - id : toolbarCategoryManagement
+        - background : transparent
+        - 상단 : 부모의 상단
+        - 좌측 : 부모의 좌측
+        - 우측 : 부모의 우측
+        - layout_width : 0dp
+
+    RecyclerView
+        - id : recyclerViewCategoryManagement
+        - 상단 : toolbarCategoryManagement 의 하단
+        - 좌측 : 부모의 좌측
+        - 우측 : 부모의 우측
+        - 하단 : 부모의 하단
+        - layout_width : 0dp
+        - layout_height : 0dp
+
+    FAB
+        - id : fabCategoryManagementAdd
+        - icon : add_24px
+        - 우측 : 부모의 우측
+        - 하단 : 부모의 하단
+        - layout_marginEnd : 10dp
+        - layout_marginBottom : 10dp
+
+[res/layout/row_category_management.xml]
+
+LinearLayout
+    - orientation : Horizontal
+    - transitionGroup : true
+    - padding : 10dp
+    - layout_height : wrap_content
+
+    TextView
+        - id : textViewRowCategoryManagement
+        - textAppearance : Large
+        - layout_weight : 1
+
+    Button
+        - id : buttonRowCategoryManagement
+        - style : IconButton
+        - icon : more_vert_24px
+        - layout_weight : 삭제
+
+[res/layout/dialog_category_management.xml]
+
+LinearLayout
+    - orientation : vertical
+    - padding : 10dp
+    - transitionGroup : true
+
+    TextInputLayout
+        - id : textFieldDialogCategoryManagement
+        - layout_height : wrap_content
+
+        TextInputEditText
+            - hint : 삭제
+            - singleLine : true
+
+
+
+[res/layout/fragment_category_management_bottom_sheet.xml]
+
+LinerLayout
+    - orientation : vertical
+    - transitionGroup : true
+    - paddingStart : 10dp
+    - paddingEnd : 10dp
+
+    BottomSheetDragHandleView
+
+    Button
+        - id : buttonCategoryManagementBottomSheetModify
+        - text : 수정
+        - layout_marginTop : 10dp
+
+    Button
+        - id : buttonCategoryManagementBottomSheetDeleteOnlyCategory
+        - text : 카테고리만 삭제
+        - layout_marginTop : 10dp
+
+    Botton
+        - id : buttonCategoryManagementBottomSheetDeleteCategoryWithMemos
+        - text : 카테고리와 메모 삭제
+        - layout_marginTop : 10dp
+
+    Space
+        - layout_height : 20dp

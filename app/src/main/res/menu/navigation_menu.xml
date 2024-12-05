@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_menu_item_all"
+        android:checkable="true"
+        android:icon="@drawable/list_alt_24px"
+        android:title="모든 메모 "
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_menu_item_favorite"
+        android:checkable="true"
+        android:icon="@drawable/check_24px"
+        android:title="즐겨 찾기"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_menu_item_secret"
+        android:checkable="true"
+        android:icon="@drawable/person_24px"
+        android:title="비밀 메모"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_menu_item_management_category"
+        android:checkable="true"
+        android:icon="@drawable/edit_24px"
+        android:title="카테고리 관리" />
+
+</menu>
